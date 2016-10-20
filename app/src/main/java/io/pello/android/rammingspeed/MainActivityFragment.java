@@ -28,7 +28,9 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                MediaPlayer mPlayer = MediaPlayer.create(getActivity(), R.raw.ramming);
+                if (mPlayer == null) {
+                   mPlayer = MediaPlayer.create(getActivity(), R.raw.ramming);
+                }
                 if (mPlayer.isPlaying()) {
                     mPlayer.stop();
                 } else {
