@@ -24,20 +24,36 @@ public class MainActivityFragment extends Fragment {
         Button button = (Button) view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener()
         {
-
             @Override
             public void onClick(View v)
             {
-                if (mPlayer == null) {
-                   mPlayer = MediaPlayer.create(getActivity(), R.raw.ramming);
-                }
-                if (mPlayer.isPlaying()) {
-                    mPlayer.stop();
-                } else {
-                    mPlayer.start();
-                }
+                playSound(R.raw.ramming);
             }
         });
+
+        Button buttonFaith = (Button) view.findViewById(R.id.button_faith);
+        buttonFaith.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                playSound(R.raw.lack_of_faith);
+            }
+        });
+
         return view;
+    }
+
+    /**
+     * plays a sound
+     * @param id
+     */
+    private void playSound (Integer id) {
+        if (null != mPlayer && mPlayer.isPlaying()) {
+            mPlayer.stop();
+        } else {
+            mPlayer = MediaPlayer.create(getActivity(), id);
+            mPlayer.start();
+        }
     }
 }
